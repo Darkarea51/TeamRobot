@@ -2,7 +2,8 @@ package sample;
 
 
 import robocode.HitRobotEvent;
-import robocode.Robot;
+import robocode.TeamRobot;
+
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
 import static robocode.util.Utils.normalRelativeAngleDegrees;
@@ -11,7 +12,7 @@ import java.awt.*;
 
 
 
-public class SupremeBot extends Robot {
+public class SupremeBot extends TeamRobot {
 	int count = 0; // Keeps track of how long we've
 	// been searching for our target
 	double gunTurnAmt; // How much to turn our gun when searching
@@ -108,6 +109,7 @@ public class SupremeBot extends Robot {
 		// Set the target
 		trackName = e.getName();
 		// Back up a bit.
+		back(20);
 		// Note:  We won't get scan events while we're doing this!
 		// An AdvancedRobot might use setBack(); execute();
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
