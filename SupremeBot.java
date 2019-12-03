@@ -109,7 +109,7 @@ public class SupremeBot extends TeamRobot {
 		// Set the target
 		trackName = e.getName();
 		// Back up a bit.
-		back(20);
+		back(1);
 		// Note:  We won't get scan events while we're doing this!
 		// An AdvancedRobot might use setBack(); execute();
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
