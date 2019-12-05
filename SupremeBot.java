@@ -3,7 +3,6 @@ package sample;
 
 import robocode.HitRobotEvent;
 import robocode.TeamRobot;
-
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
 import static robocode.util.Utils.normalRelativeAngleDegrees;
@@ -59,34 +58,39 @@ public class SupremeBot extends TeamRobot {
 	 * onScannedRobot:  Here's the good stuff
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
-		fire(2);
-		// If we have a target, and this isn't it, return immediately
-		// so we can get more ScannedRobotEvents.
-		if (trackName != null && !e.getName().equals(trackName)) {
+		if (isTeammate(e.getName())) {
 			return;
 		}
-
-		// If we don't have a target, well, now we do!
-		if (trackName == null) {
-			trackName = e.getName();
-			out.println("Tracking " + trackName);
-		}
-		// This is our target.  Reset count (see the run method)
-		count = 0;
-		// If our target is too far away, turn and move toward it.
-		if (e.getDistance() > 50) {
-			gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
-
-			turnGunRight(gunTurnAmt); // Try changing these to setTurnGunRight,
-			turnRight(e.getBearing()); // and see how much SupremeBot improves...
-			// (you'll have to make SupremeBot an AdvancedRobot)
-			if (e.getDistance() < 200) {
-				ahead(e.getDistance());
+		else {
+			fire(3);
+			// If we have a target, and this isn't it, return immediately
+			// so we can get more ScannedRobotEvents.
+			if (trackName != null && !e.getName().equals(trackName)) {
+				return;
 			}
-			else if (e.getDistance() > 200) {
-				ahead(e.getDistance() / 2);
+	
+			// If we don't have a target, well, now we do!
+			if (trackName == null) {
+				trackName = e.getName();
+				out.println("Tracking " + trackName);
 			}
-			return;
+			// This is our target.  Reset count (see the run method)
+			count = 0;
+			// If our target is too far away, turn and move toward it.
+			if (e.getDistance() > 50) {
+				gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
+	
+				turnGunRight(gunTurnAmt); // Try changing these to setTurnGunRight,
+				turnRight(e.getBearing()); // and see how much SupremeBot improves...
+				// (you'll have to make SupremeBot an AdvancedRobot)
+				if (e.getDistance() < 200) {
+					ahead(e.getDistance());
+				}
+				else if (e.getDistance() > 200) {
+					ahead(e.getDistance() / 2);
+				}
+				return;
+			}
 		}
 
 		// Our target is close.
