@@ -83,10 +83,10 @@ public class SupremeBot extends TeamRobot {
 				turnGunRight(gunTurnAmt); // Try changing these to setTurnGunRight,
 				turnRight(e.getBearing()); // and see how much SupremeBot improves...
 				// (you'll have to make SupremeBot an AdvancedRobot)
-				if (e.getDistance() < 200) {
+				if (e.getDistance() < 10) {
 					ahead(e.getDistance());
 				}
-				else if (e.getDistance() > 200) {
+				else if (e.getDistance() > 10) {
 					ahead(e.getDistance() / 2);
 				}
 				return;
@@ -113,7 +113,7 @@ public class SupremeBot extends TeamRobot {
 		// Set the target
 		trackName = e.getName();
 		// Back up a bit.
-		back(1);
+		back(10);
 		// Note:  We won't get scan events while we're doing this!
 		// An AdvancedRobot might use setBack(); execute();
 		gunTurnAmt = normalRelativeAngleDegrees(e.getBearing() + (getHeading() - getRadarHeading()));
