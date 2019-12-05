@@ -83,10 +83,10 @@ public class SupremeBot extends TeamRobot {
 				turnGunRight(gunTurnAmt); // Try changing these to setTurnGunRight,
 				turnRight(e.getBearing()); // and see how much SupremeBot improves...
 				// (you'll have to make SupremeBot an AdvancedRobot)
-				if (e.getDistance() < 10) {
-					ahead(e.getDistance());
+				if (e.getDistance() < 200) {
+					ahead(e.getDistance() + 5);
 				}
-				else if (e.getDistance() > 10) {
+				else if (e.getDistance() > 200) {
 					ahead(e.getDistance() / 2);
 				}
 				return;
