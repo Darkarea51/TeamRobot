@@ -22,11 +22,7 @@ public class SupremeBot extends TeamRobot {
 	 */
 	public void run() {
 		// Set colors
-		setBodyColor(new Color(128, 128, 50));
-		setGunColor(new Color(50, 50, 20));
-		setRadarColor(new Color(200, 200, 70));
-		setScanColor(Color.white);
-		setBulletColor(Color.blue);
+		setColors(Color.red, Color.blue, Color.white);
 
 		// Prepare gun
 		trackName = null; // Initialize to not tracking anyone
@@ -84,7 +80,7 @@ public class SupremeBot extends TeamRobot {
 				turnRight(e.getBearing()); // and see how much SupremeBot improves...
 				// (you'll have to make SupremeBot an AdvancedRobot)
 				if (e.getDistance() < 200) {
-					ahead(e.getDistance() + 5);
+					ahead(e.getDistance());
 				}
 				else if (e.getDistance() > 200) {
 					ahead(e.getDistance() / 2);
